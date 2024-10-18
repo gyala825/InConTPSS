@@ -12,7 +12,6 @@ maxEpochs = 100
 m = 1.0
 models_dir = 'best_models'
 model_params = {'batch_size': 32, 'num_class': 3, 'results' : 'best_results', 'depth_4' :4} 
-# datasets = ['CASP12', 'CASP13', 'CASP14', 'CB513', 'Test2016', 'Test2018']    
 datasets = ['CASP13']                                                                                  
 
 torch.manual_seed(0)
