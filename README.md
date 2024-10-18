@@ -11,6 +11,17 @@ The six test sets(CASP12, CASP13, CASP14, CB513, TEST 2016, TEST 2018) and their
 >
 >The sequence profile feature used is included in the Hybrid file.
 
+## Trained models
+Download link for the trained model.
+
+>https://pan.baidu.com/s/1e9lkKof2dsulL2zTtcLGrg 
+
+>
+>(Password:mode)
+
+## Run
+After get data and trained model, run the eval.py
+
 ## Requirement
 
 >Python >=3.8
