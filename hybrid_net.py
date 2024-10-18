@@ -1,9 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from net.net_utils import BasicConv1d
-from net.CA import CoordAtt
-from net.tcn import TemporalConvNet
+from net_utils import BasicConv1d
+from tcn import TemporalConvNet
 
 def norm(x):
     out = F.normalize(x - x.mean(dim=-1, keepdim=True), 2, dim=-1)
@@ -97,35 +96,4 @@ class inception_block(nn.Module):
         out += identity
         out = self.dropout(out)
         return out
-'''    
-class stem(nn.Module):
-    def __init__(self, in_channels, out_channels):
-        super(stem, self).__init__()
-        self.conv1 = nn.Conv1d(in_channels, out_channels, 1)
-        # self.conv1 = nn.Conv1d(in_channels, out_channels, 3, padding=1)
-        # self.conv2 = nn.Conv1d(out_channels, out_channels, 3, padding=1)
-        self.bn = nn.BatchNorm1d(out_channels)
-        self.branch_1 = nn.Conv1d(out_channels, out_channels // 2, 3, padding=1)
-        self.branch_2 = nn.Sequential(
-            nn.Conv1d(out_channels, out_channels // 2, 3, padding=1),
-            nn.MaxPool1d(kernel_size=3, stride=1, padding=1)
-            )
-        # self.dp = nn.Dropout(0.2)
-    def forward(self, x):
-        x = self.bn(self.conv1(x))
-        # x = self.conv2(x)
-        x = F.hardswish(x)
-        x1 = self.branch_1(x)
-        x2 = self.branch_2(x)
-        out = torch.cat([x1, x2], 1)
-        # out = self.dp(out)
-        return out
- '''   
 
- 
- 
-if __name__ == '__main__':
-    model = pssp_inception(73, 72, 2)
-    input_data = torch.randn(32, 73, 200)
-    out = model(input_data)
-    print(out.shape)
