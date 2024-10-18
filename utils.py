@@ -33,7 +33,6 @@ def H5collate_fn(batch_data):
     
     for idx in range(batch_size):
         data = batch_data[idx]
-        # pidx = batch_data[idx].ProteinIdx
         lenth = data['ProteinLen']
         masks[idx, :lenth] = True
         hybrid_inputs[idx, :lenth, :] = data['hybrid_input']
@@ -58,7 +57,6 @@ def train(model, device, train_loader, optimizer, criterion, epoch):
         optimizer.zero_grad()
         # forward
         outputs = model(hybrid_inputs, embed_inputs)
-        # view 和 reshape 改变张量形状的区别
         outputs = outputs.reshape(-1, outputs.size(2))
         # output (b*L, C)
         loss = criterion(outputs, targets, masks)
